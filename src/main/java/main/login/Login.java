@@ -12,7 +12,7 @@ public class Login {
     private List<Usuario> usuario = new ArrayList<>();
 
 
-    public static boolean login() {
+    public static Usuario login() {
         List<Usuario> usuario = new ArrayList<>();
         Admin admin = new Admin();
         usuario.add(admin);
@@ -21,13 +21,13 @@ public class Login {
         String userLogin = in.nextLine();
         System.out.println("Digite a senha: ");
         String psd = in.nextLine();
-        boolean usuario_login;
-        if (userLogin.equals(admin.getCpf()) && admin.getSenha().equals(admin.getSenha())) {
-            usuario_login = true;
-        } else if (userLogin.equals(usuario.get(0).getCpf()) && psd.equals(usuario.get(0).getSenha())) {
-            usuario_login = true;
-        } else {
-            usuario_login = false;
+        Usuario usuario_login = null;
+        for (Usuario us : usuario) {
+            if (userLogin.equals(admin.getCpf()) && admin.getSenha().equals(admin.getSenha())) {
+                usuario_login = admin;
+            } else if (userLogin.equals(us.getCpf()) && psd.equals(us.getSenha())) {
+                usuario_login = new Cliente(us);
+            } else usuario_login = null;
         }
         return usuario_login;
     }
