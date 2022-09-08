@@ -1,11 +1,11 @@
 package main.login;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
-import main.menu.Menu;
 
-import static main.menu.Menu.*;
+import static main.login.Cliente.clientes;
 
 
 public class Login {
@@ -21,15 +21,19 @@ public class Login {
         String userLogin = in.nextLine();
         System.out.println("Digite a senha: ");
         String psd = in.nextLine();
-        Usuario usuario_login = null;
+        Usuario usuarioLogin = null;
         for (Usuario us : usuario) {
-            if (userLogin.equals(admin.getCpf()) && admin.getSenha().equals(admin.getSenha())) {
-                usuario_login = admin;
+            if (userLogin.equals(admin.getCpf()) && userLogin.equals(admin.getSenha())) {
+                usuarioLogin = admin;
             } else if (userLogin.equals(us.getCpf()) && psd.equals(us.getSenha())) {
-                usuario_login = new Cliente(us);
-            } else usuario_login = null;
+                for (Usuario usuarioAtual : clientes) {
+                    if (userLogin.equals(us.getCpf()) && psd.equals(us.getSenha())) {
+                        usuarioLogin = usuarioAtual;
+                    }
+                }
+            } else usuarioLogin = null;
         }
-        return usuario_login;
+        return usuarioLogin;
     }
 
 

@@ -5,17 +5,19 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Cliente extends Usuario {
-    static List<Usuario> cliente = new ArrayList<>();
+    static List<Usuario> clientes = new ArrayList<>();
     
     private String name;
+    private String cidade;
+    private char sexo;
 
     public Cliente(String name, String cpf, String senha) {
-        this.cliente = cliente;
+        this.name = name;
         this.setCpf(cpf);
         this.setSenha(senha);
     }
 
-    public Cliente(Usuario us) {
+    public Cliente() {
         super();
     }
 
@@ -32,7 +34,7 @@ public class Cliente extends Usuario {
         System.out.println("insira a senha que deseja cadastrar senha: ");
         String senha = in.nextLine();
         Cliente novo = new Cliente(name, cpf, senha);
-        cliente.add(novo);
+        novo.adicionaUsuario(novo);
     }
 
 
@@ -42,11 +44,11 @@ public class Cliente extends Usuario {
         System.out.println("1 - SIM");
         System.out.println("2 - NÃO");
         int option = Integer.parseInt(in.nextLine());
-        switch(option) {
-            case 1:
-                Cliente.cadastraCliente();
-            case 2:
-                System.exit(0);
+        if (option == 1) Cliente.cadastraCliente();
+        else if (option == 2) System.exit(0);
+        else {
+            System.out.println("Digite uma opção corretamente");
+            desejaCadastrar();
         }
     }
 
@@ -69,8 +71,5 @@ public class Cliente extends Usuario {
     public void setSexo(char sexo) {
         this.sexo = sexo;
     }
-
-    private String cidade;
-    private char sexo;
 
 }

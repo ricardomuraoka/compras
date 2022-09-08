@@ -4,11 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Usuario {
-    private List<Usuario> usuario;
-
-    {
-        usuario = new ArrayList<>();
-    }
+    private List<Usuario> usuarios = new ArrayList<>();
 
     private String cpf;
     private String senha;
@@ -17,11 +13,11 @@ public abstract class Usuario {
         return cpf;
     }
 
-    public void addUsuario(Usuario novo) {
-        if (usuario.contains(novo)) {
+    public void adicionaUsuario(Usuario novo) {
+        if (usuarios.contains(novo)) {
             System.out.println("Este cliente já existe");
         } else {
-            this.usuario.add(novo);
+            usuarios.add(novo);
         }
     }
 

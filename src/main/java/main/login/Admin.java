@@ -1,22 +1,23 @@
 package main.login;
 
 public class Admin extends Usuario {
+    private static final String ADM = "admin";
 
     public Admin() {
-        this.setCpf("admin");
-        this.setSenha("Admin");
+        this.setCpf(ADM);
+        this.setSenha(ADM);
     }
 
 
 
     @Override
     public String getCpf() {
-        return "admin";
+        return ADM;
     }
 
     @Override
     public String getSenha() {
-        return "admin";
+        return ADM;
     }
 }
 
