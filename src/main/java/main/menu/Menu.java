@@ -1,7 +1,6 @@
 package main.menu;
 
-import main.Principal;
-import main.compras.ExecCarrinho;
+import main.Sobre;
 import main.login.Login;
 import main.usuarios.Usuario;
 
@@ -32,6 +31,7 @@ public final class Menu {
             case 3:
                 Login.validaUsuario();
             case 4:
+                System.out.println(new Sobre());
             case 5:
                 System.exit(0);
         }
