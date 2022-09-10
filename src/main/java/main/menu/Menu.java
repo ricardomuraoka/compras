@@ -1,6 +1,7 @@
 package main.menu;
 
 import main.Principal;
+import main.compras.ExecCarrinho;
 import main.login.Login;
 import main.usuarios.Usuario;
 
@@ -27,13 +28,10 @@ public final class Menu {
 
         switch(option) {
             case 1:
-                ;
             case 2:
-                ;
             case 3:
                 Login.validaUsuario();
             case 4:
-                ;
             case 5:
                 System.exit(0);
         }

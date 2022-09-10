@@ -1,24 +1,16 @@
-package main.compras;
+package main.estoque;
 
 public class Produto {
 
-    private int quantidade;
     private String nome;
     private Double preco;
 
-    public Produto(int quantidade, String nome, Double preco) {
-        this.quantidade = quantidade;
+    public Produto(String nome, Double preco) {
+
         this.nome = nome;
         this.preco = preco;
     }
 
-    public int getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(int codigo) {
-        this.quantidade = codigo;
-    }
 
     public String getNome() {
         return nome;
@@ -40,7 +32,7 @@ public class Produto {
 
     @Override
     public String toString() {
-        return "\n Produto [quantidade=" + quantidade + ", nome=" + nome + ", preco="
+        return "\n Produto [nome=" + nome + ", preco="
                 + preco + "]";
     }
 

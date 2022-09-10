@@ -1,7 +1,7 @@
-package main.carrinho;
+package main.compras;
 
 
-import main.compras.Produto;
+import main.estoque.Produto;
 
 import java.util.ArrayList;
 import java.util.List;

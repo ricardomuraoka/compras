@@ -1,16 +1,16 @@
-package main.carrinho;
-import main.compras.Produto;
+package main.compras;
+import main.estoque.Produto;
 
 public class ExecCarrinho {
     public static void main(String[] args) {
 
         CarrinhoDeCompras carrinho = new CarrinhoDeCompras();
 
-        Produto caneca = new Produto(2, "CANECA", 19.00);
-        Produto copo = new Produto(3, "COPO", 12.00);
-        Produto chaveiroColecionável = new Produto(5, "CHAVEIRO COLECIONÁVEL", 2.00);
-        Produto growleyStanley = new Produto(4, "GROWLEY STANLEY", 450.00);
-        Produto growleyTabajara = new Produto(2, "GROWLEY TABAJARA", 30.00);
+        Produto caneca = new Produto("CANECA", 19.00);
+        Produto copo = new Produto("COPO", 12.00);
+        Produto chaveiroColecionável = new Produto("CHAVEIRO COLECIONÁVEL", 2.00);
+        Produto growleyStanley = new Produto("GROWLEY STANLEY", 450.00);
+        Produto growleyTabajara = new Produto("GROWLEY TABAJARA", 30.00);
 
 
         carrinho.adicionaProduto(caneca);
@@ -25,7 +25,7 @@ public class ExecCarrinho {
 
         total = carrinho.totalProdutos();
 
-        Produto tacaVinho = new Produto(3, "TAÇA DE VINHO", 45.00);
+        Produto tacaVinho = new Produto("TAÇA DE VINHO", 45.00);
         carrinho.adicionaProduto(tacaVinho);
 
         total = carrinho.totalProdutos();
