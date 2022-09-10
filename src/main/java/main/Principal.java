@@ -1,13 +1,12 @@
 package main;
 
 
+import main.estoque.Produto;
 import main.login.*;
-import main.menu.Menu;
-import main.usuarios.Cliente;
-import main.usuarios.Usuario;
 
 public class Principal {
     public static void main(String[] args) {
+        Produto.criaEstoque();
         Login.validaUsuario();
     }
 

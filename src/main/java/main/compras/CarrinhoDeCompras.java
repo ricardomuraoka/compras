@@ -16,23 +16,6 @@ public class CarrinhoDeCompras {
     }
 
 
-    public void adicionaProduto(Produto produto) {
-        this.produtos.add(produto);
-    }
-
-    public void removeProduto(int qtdeProduto) {
-        if(qtdeProduto < 0 ) {
-            System.out.println("\n Não é possível remover essa quantidade, favor verificar a quantidade no carrinho");
-        }
-        else {
-            if(qtdeProduto > this.produtos.size()) {
-                System.out.println("\n Não temos essa quantidade em estoque");
-            }
-            else {
-                this.produtos.remove(qtdeProduto);
-            }
-        }
-    }
     public String listaProdutos() {
         List<Produto> listaProduto= new ArrayList<>();
         for( Produto produtoNaLista : this.produtos) {

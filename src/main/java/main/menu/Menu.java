@@ -34,6 +34,8 @@ public final class Menu {
                 System.out.println(new Sobre());
             case 5:
                 System.exit(0);
+            default:
+                Menu.menu(Login.login());
         }
     }
 }
