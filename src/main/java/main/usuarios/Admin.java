@@ -1,4 +1,6 @@
-package main.login;
+package main.usuarios;
+
+import main.usuarios.Usuario;
 
 public class Admin extends Usuario {
     private static final String ADM = "admin";

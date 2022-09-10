@@ -1,11 +1,11 @@
-package main.login;
+package main.usuarios;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Cliente extends Usuario {
-    static List<Usuario> clientes = new ArrayList<>();
+    public static List<Usuario> clientes = new ArrayList<>();
     
     private String name;
     private String cidade;

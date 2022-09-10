@@ -1,13 +1,15 @@
 package main.menu;
 
-import main.login.Usuario;
+import main.Principal;
+import main.login.Login;
+import main.usuarios.Usuario;
 
 import java.util.Objects;
 import java.util.Scanner;
 
 public final class Menu {
     private Menu() {
-        throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
+        throw new UnsupportedOperationException("Classe de utilidade não pode ser instanciada.");
     }
 
     public static void menu(Usuario usuario) {
@@ -29,7 +31,7 @@ public final class Menu {
             case 2:
                 ;
             case 3:
-                ;
+                Login.validaUsuario();
             case 4:
                 ;
             case 5:

@@ -1,11 +1,15 @@
 package main.login;
 
+import main.menu.Menu;
+import main.usuarios.Admin;
+import main.usuarios.Cliente;
+import main.usuarios.Usuario;
+
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
-import static main.login.Cliente.clientes;
+import static main.usuarios.Cliente.clientes;
 
 
 public class Login {
@@ -34,6 +38,18 @@ public class Login {
             } else usuarioLogin = null;
         }
         return usuarioLogin;
+    }
+
+    public static void validaUsuario() {
+        Usuario usuario = Login.login();
+        if (usuario != null) {
+            Menu.menu(usuario);
+        } else {
+            System.out.println("Usuário não cadastrado");
+            Cliente.desejaCadastrar();
+            System.out.println();
+
+        }
     }
 
 
