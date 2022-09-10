@@ -2,6 +2,9 @@ package main.usuarios;
 
 import main.usuarios.Usuario;
 
+/**
+ * Classe administrador
+ */
 public class Admin extends Usuario {
     private static final String ADM = "admin";
 

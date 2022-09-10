@@ -2,9 +2,10 @@ package main.estoque;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Produto {
-
+    public static List<Produto> estoque = new ArrayList<>();
     private String nome;
     private Double preco;
     private int quantidade;
@@ -40,17 +41,13 @@ public class Produto {
         this.quantidade = quantidade;
     }
 
-
-
     @Override
     public String toString() {
-        return "\n Produto [nome=" + nome + ", preco="
-                + preco + ", quantidade=" + quantidade + "]";
+        return "\n Produto [nome: " + nome + ", preco: R$"
+                + preco + ", quantidade: " + quantidade + "]";
     }
 
-    public static void criaEstoque() {
-        List<Produto> estoque = new ArrayList<>();
-
+    public static List<Produto> criaEstoque() {
         Produto caneca = new Produto("CANECA", 19.00, 5);
         Produto copo = new Produto("COPO", 12.00, 4);
         Produto chaveiroColecionável = new Produto("CHAVEIRO COLECIONÁVEL", 2.00, 3);
@@ -62,6 +59,7 @@ public class Produto {
         estoque.add(chaveiroColecionável);
         estoque.add(growleyStanley);
         estoque.add(growleyTabajara);
+        return estoque;
     }
 
 }

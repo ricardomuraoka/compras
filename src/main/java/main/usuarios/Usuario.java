@@ -3,6 +3,11 @@ package main.usuarios;
 import java.util.ArrayList;
 import java.util.List;
 
+import static main.usuarios.Cliente.*;
+
+/**
+ * Classe usuário
+ */
 public abstract class Usuario {
     private List<Usuario> usuarios = new ArrayList<>();
 
@@ -13,13 +18,7 @@ public abstract class Usuario {
         return cpf;
     }
 
-    public void adicionaUsuario(Usuario novo) {
-        if (usuarios.contains(novo)) {
-            System.out.println("Este cliente já existe");
-        } else {
-            usuarios.add(novo);
-        }
-    }
+
 
     public void setCpf(String cpf) {
         this.cpf = cpf;

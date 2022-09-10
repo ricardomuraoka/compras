@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static main.login.Login.validaUsuario;
+
+/**
+Classe Cliente
+ */
 public class Cliente extends Usuario {
-    public static List<Usuario> clientes = new ArrayList<>();
-    
+    private static List<Usuario> clientes = new ArrayList<>();
+
     private String name;
     private String cidade;
-    private char sexo;
 
     public Cliente(String name, String cpf, String senha) {
         this.name = name;
@@ -24,21 +28,33 @@ public class Cliente extends Usuario {
     public String getName() {
         return name;
     }
-    
-    public static void cadastraCliente() {
+
+    public static void cadastraCliente() throws InterruptedException {
         Scanner in = new Scanner(System.in);
         System.out.println("Insira seu nome: ");
         String name = in.nextLine();
         System.out.println("Insira seu cpf: ");
         String cpf = in.nextLine();
-        System.out.println("insira a senha que deseja cadastrar senha: ");
+        System.out.println("insira a senha que deseja cadastrar: ");
         String senha = in.nextLine();
-        Cliente novo = new Cliente(name, cpf, senha);
-        novo.adicionaUsuario(novo);
+        Usuario novo = new Cliente(name, cpf, senha);
+        System.out.println("Insira a cidade onde você mora: ");
+        String cidadeUsuario = in.nextLine();
+        ((Cliente) novo).setCidade(cidadeUsuario);
+        adicionaCliente(novo);
+        validaUsuario();
+    }
+
+    public static void adicionaCliente(Usuario novo) {
+        if (clientes.contains(novo)) {
+            System.out.println("Este cliente já existe");
+        } else {
+            clientes.add(novo);
+        }
     }
 
 
-    public static void desejaCadastrar() {
+    public static void desejaCadastrar() throws InterruptedException {
         System.out.println("Deseja realizar seu cadastro? ");
         Scanner in = new Scanner(System.in);
         System.out.println("1 - SIM");
@@ -64,12 +80,16 @@ public class Cliente extends Usuario {
         this.cidade = cidade;
     }
 
-    public char getSexo() {
-        return sexo;
+    public static List<Usuario> getClientes() {
+        return clientes;
     }
 
-    public void setSexo(char sexo) {
-        this.sexo = sexo;
+
+    @Override
+    public String toString() {
+        return "Nome do cliente: " + name +
+                ", cidade: " + cidade;
     }
+
 
 }

@@ -8,29 +8,24 @@ import main.usuarios.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-import static main.usuarios.Cliente.clientes;
+import static main.usuarios.Cliente.getClientes;
 
 
 public class Login {
-    private List<Usuario> usuario = new ArrayList<>();
-
 
     public static Usuario login() {
-        List<Usuario> usuario = new ArrayList<>();
         Admin admin = new Admin();
-        usuario.add(admin);
         Scanner in = new Scanner(System.in);
-        System.out.println("Digite o login: ");
+        System.out.println("Digite o login(cpf): ");
         String userLogin = in.nextLine();
         System.out.println("Digite a senha: ");
         String psd = in.nextLine();
         Usuario usuarioLogin = null;
-        for (Usuario us : usuario) {
+        for (Usuario us : getClientes()) {
             if (userLogin.equals(admin.getCpf()) && userLogin.equals(admin.getSenha())) {
                 usuarioLogin = admin;
             } else if (userLogin.equals(us.getCpf()) && psd.equals(us.getSenha())) {
-                for (Usuario usuarioAtual : clientes) {
+                for (Usuario usuarioAtual : getClientes()) {
                     if (userLogin.equals(us.getCpf()) && psd.equals(us.getSenha())) {
                         usuarioLogin = usuarioAtual;
                     }
@@ -40,7 +35,7 @@ public class Login {
         return usuarioLogin;
     }
 
-    public static void validaUsuario() {
+    public static void validaUsuario() throws InterruptedException {
         Usuario usuario = Login.login();
         if (usuario != null) {
             Menu.menu(usuario);
@@ -50,15 +45,6 @@ public class Login {
             System.out.println();
 
         }
-    }
-
-
-    public List<Usuario> getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(List<Usuario> usuario) {
-        this.usuario = usuario;
     }
 
 }
