@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static main.login.Login.trocaUsuario;
 import static main.login.Login.validaUsuario;
 
 /**
@@ -42,7 +43,7 @@ public class Cliente extends Usuario {
         String cidadeUsuario = in.nextLine();
         ((Cliente) novo).setCidade(cidadeUsuario);
         adicionaCliente(novo);
-        validaUsuario();
+        trocaUsuario();
     }
 
     public static void adicionaCliente(Usuario novo) {

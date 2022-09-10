@@ -9,7 +9,7 @@ public class Sobre {
     @Override
     public String toString() {
         return String.format("\nNome da loja: " + nomeLoja
-                + "\nVersão: " + versao + "\nCriado por: " + autor);
+                + "\nVersão: " + versao + "\nCriado por: " + autor + "\n");
     }
 
 
