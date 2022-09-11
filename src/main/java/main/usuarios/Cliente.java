@@ -1,11 +1,12 @@
 package main.usuarios;
 
+import main.estoque.Produto;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import static main.login.Login.trocaUsuario;
-import static main.login.Login.validaUsuario;
 
 /**
 Classe Cliente
@@ -15,6 +16,7 @@ public class Cliente extends Usuario {
 
     private String name;
     private String cidade;
+    private static List<Produto> historicoCompras = new ArrayList<Produto>();
 
     public Cliente(String name, String cpf, String senha) {
         this.name = name;
@@ -66,6 +68,12 @@ public class Cliente extends Usuario {
         else {
             System.out.println("Digite uma opção corretamente");
             desejaCadastrar();
+        }
+    }
+
+    public static void adicionaCompra(ArrayList<Produto> compra) {
+        for (Produto produto: compra) {
+            historicoCompras.add(produto);
         }
     }
 

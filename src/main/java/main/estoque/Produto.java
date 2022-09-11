@@ -43,8 +43,8 @@ public class Produto {
 
     @Override
     public String toString() {
-        return "\n Produto [nome: " + nome + ", preco: R$"
-                + preco + ", quantidade: " + quantidade + "]";
+        return "\nProduto: " + nome + ", preco: R$"
+                + preco + ", quantidade: " + quantidade;
     }
 
     public static List<Produto> criaEstoque() {

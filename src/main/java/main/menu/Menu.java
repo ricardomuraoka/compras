@@ -30,15 +30,22 @@ public final class Menu {
         switch(option) {
             case 1:
                 MenuCompras.MenuCompras(logado);
+                break;
             case 2:
                 Login.trocaUsuario();
+                break;
             case 3:
                 System.out.println(new Sobre());
                 Thread.sleep(3000);
                 Menu.menu(logado);
+                break;
             case 4:
                 System.exit(0);
+                break;
             case 5:
+                break;
+            default:
+                System.out.println("Escolha uma das opções: ");
         }
     }
 }

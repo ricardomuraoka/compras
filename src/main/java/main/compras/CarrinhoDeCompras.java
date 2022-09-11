@@ -1,28 +1,27 @@
 package main.compras;
 
 
-import jdk.swing.interop.SwingInterOpUtils;
 import main.estoque.Produto;
+import main.usuarios.Cliente;
+import main.usuarios.Usuario;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 import java.util.Scanner;
 
 import static main.estoque.Produto.estoque;
 
 public class CarrinhoDeCompras {
 
-    private ArrayList<Produto> carrinho;
+    private static ArrayList<Produto> carrinho = new ArrayList<>();
+    private static double totalCompras;
 
 
 
     public CarrinhoDeCompras() {
-        this.carrinho = new ArrayList<Produto>();
-    }
+        }
 
 
-    public void adicionaProduto() {
+    public static void adicionaProduto() {
         Scanner in = new Scanner(System.in);
         System.out.println("Qual produto gostaria de adicionar? \n");
         String itemProduto = in.nextLine();
@@ -32,7 +31,7 @@ public class CarrinhoDeCompras {
         for (Produto produtoEstoque : estoque) {
             if (produtoEstoque.getNome().equals(itemProduto)) {
                 carrinho.add(produtoEstoque);
-                produtoEstoque.setQuantidade(produtoEstoque.getQuantidade() - qtdeProdutos);
+                carrinho.get(carrinho.indexOf(produtoEstoque)).setQuantidade(qtdeProdutos);
             }
         }
     }
@@ -41,7 +40,7 @@ public class CarrinhoDeCompras {
         String resultadoBusca = "";
         for (Produto produtoEstoque : estoque) {
             if (produtoEstoque.getNome().toLowerCase().contains(busca.toLowerCase())) {
-                resultadoBusca = ("Temos em estoque: " + busca + produtoEstoque + "\n");
+                resultadoBusca = ("Temos em estoque: " + produtoEstoque);
                 System.out.println(resultadoBusca);
             }
         }
@@ -52,52 +51,30 @@ public class CarrinhoDeCompras {
 
     }
 
-
-    public void removeProduto(int numeroProduto) {
-        if(numeroProduto < 0 ) {
-            System.out.println("\n Produto invalido para remocao");
+    public static Double totalCompras() {
+        double total = 0;
+        for (Produto produtoCarrinho: carrinho) {
+            total += produtoCarrinho.getPreco() * produtoCarrinho.getQuantidade();
         }
-        else {
-            if(numeroProduto > this.carrinho.size()) {
-                System.out.println("\n Produto maior do que tamanho da colecao. Produto invalido para remocao");
-            }
-            else {
-                this.carrinho.remove(numeroProduto);
-            }
-        }
-    }
-
-
-
-    public String listaProdutos() {
-        List<Produto> listaProduto= new ArrayList<>();
-        for( Produto produtoNaLista : this.carrinho) {
-            listaProduto.add(produtoNaLista);
-        }
-
-        return String.valueOf(listaProduto);
-
-    }
-
-
-    public Double totalProdutos() {
-        Double total = 0.00;
-
-        for( Produto produtoNaLista : this.carrinho) {
-            total = total + produtoNaLista.getPreco();
-            String.format("\n"+ produtoNaLista);
-        }
-
+        totalCompras = total;
         return total;
     }
 
-
+    public static void fecharCompra(Cliente cliente) {
+        for (Produto produtoCarrinho: carrinho) {
+            int qtdeProdutoCarrinho = carrinho.get(carrinho.indexOf(produtoCarrinho)).getQuantidade();
+            int qtdeProdutoEstoque = estoque.get(estoque.indexOf(produtoCarrinho)).getQuantidade();
+            estoque.get(estoque.indexOf(produtoCarrinho)).setQuantidade(qtdeProdutoEstoque - qtdeProdutoCarrinho);
+        }
+        cliente.adicionaCompra(carrinho);
+        carrinho = new ArrayList<>();
+    }
     public ArrayList<Produto> getCarrinhoProdutos() {
         return carrinho;
     }
 
-    public void setProdutosCarrinho(ArrayList<Produto> produtos) {
-        this.carrinho = produtos;
+    @Override
+    public String toString() {
+        return getCarrinhoProdutos() + "\nValor Total: R$" + totalCompras();
     }
-
 }
