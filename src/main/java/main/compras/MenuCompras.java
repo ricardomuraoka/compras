@@ -17,10 +17,7 @@ public class MenuCompras {
         Usuario logado = usuario;
         Scanner in = new Scanner(System.in);
         System.out.println("ESCOLHA UMA OPÇÃO");
-        if (Objects.equals(usuario.getCpf(), logado.getCpf()) && Objects.equals(usuario.getSenha(), usuario.getSenha()))
-        {
-            System.out.println("1 - DIGITE 1 - BUSCAR PRODUTOS. ");
-        }
+        System.out.println("1 - DIGITE 1 - BUSCAR PRODUTOS. ");
         System.out.println("2 - DIGITE 2 - LISTA PRODUTOS. ");
         System.out.println("3 - DIGITE 3 - REALIZAR COMPRA. ");
         System.out.println("4 - DIGITE 4 - EXIBE CARRINHO.  ");
