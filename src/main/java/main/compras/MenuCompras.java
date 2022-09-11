@@ -1,4 +1,5 @@
 package main.compras;
+import main.menu.Menu;
 import main.usuarios.Cliente;
 import main.usuarios.Usuario;
 import static main.estoque.Produto.estoque;
@@ -51,8 +52,10 @@ public class MenuCompras {
                         MenuCompras.MenuCompras(logado);
                     } else if (opt == 2) {
                         CarrinhoDeCompras.fecharCompra((Cliente) logado);
-                }
-                MenuCompras.MenuCompras(logado);
+                } else {
+                        System.out.println("Escolha umas das opções");
+                    }
+                    Menu.menu(logado);
                 break;
             case 5:
                 break;

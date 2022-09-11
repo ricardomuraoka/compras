@@ -6,6 +6,7 @@ import main.usuarios.Cliente;
 import main.usuarios.Usuario;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import static main.estoque.Produto.estoque;
@@ -65,6 +66,7 @@ public class CarrinhoDeCompras {
             int qtdeProdutoCarrinho = carrinho.get(carrinho.indexOf(produtoCarrinho)).getQuantidade();
             int qtdeProdutoEstoque = estoque.get(estoque.indexOf(produtoCarrinho)).getQuantidade();
             estoque.get(estoque.indexOf(produtoCarrinho)).setQuantidade(qtdeProdutoEstoque - qtdeProdutoCarrinho);
+            carrinho.get(carrinho.indexOf(produtoCarrinho)).setQuantidade(qtdeProdutoCarrinho);
         }
         cliente.adicionaCompra(carrinho);
         carrinho = new ArrayList<>();

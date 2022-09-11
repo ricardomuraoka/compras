@@ -3,6 +3,7 @@ package main.usuarios;
 import main.estoque.Produto;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,7 +17,9 @@ public class Cliente extends Usuario {
 
     private String name;
     private String cidade;
-    private static List<Produto> historicoCompras = new ArrayList<Produto>();
+    private Double totalComprado;
+    private Double mediaCompra;
+    private static List<Produto> historicoCompras = new ArrayList<>();
 
     public Cliente(String name, String cpf, String senha) {
         this.name = name;
@@ -40,10 +43,10 @@ public class Cliente extends Usuario {
         String cpf = in.nextLine();
         System.out.println("insira a senha que deseja cadastrar: ");
         String senha = in.nextLine();
-        Usuario novo = new Cliente(name, cpf, senha);
+        Cliente novo = new Cliente(name, cpf, senha);
         System.out.println("Insira a cidade onde você mora: ");
         String cidadeUsuario = in.nextLine();
-        ((Cliente) novo).setCidade(cidadeUsuario);
+        novo.setCidade(cidadeUsuario);
         adicionaCliente(novo);
         trocaUsuario();
     }
@@ -71,10 +74,25 @@ public class Cliente extends Usuario {
         }
     }
 
-    public static void adicionaCompra(ArrayList<Produto> compra) {
-        for (Produto produto: compra) {
-            historicoCompras.add(produto);
+    public static List<Produto> getHistoricoCompras() {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Digite o nome do usuario que deseja obter o historico");
+        String clienteRelatorio = in.nextLine();
+        List<Produto> historico = null;
+        for (Usuario cliente : clientes) {
+            if (cliente.getCpf() == clienteRelatorio) {
+            }
+            historico = geraHistorico();
         }
+        return historico;
+    }
+
+    public static void adicionaCompra(List<Produto> compra) {
+        historicoCompras.addAll(compra);
+    }
+
+    public static List<Produto> geraHistorico() {
+        return historicoCompras;
     }
 
     public void setName(String name) {
@@ -91,6 +109,22 @@ public class Cliente extends Usuario {
 
     public static List<Usuario> getClientes() {
         return clientes;
+    }
+
+    public Double getTotalComprado() {
+        Double total = Double.valueOf(0);
+        Double preco = 0.00;
+        Double qtde = Double.valueOf(0);
+        for (Produto produto : historicoCompras) {
+            preco = produto.getPreco();
+            qtde = Double.valueOf(produto.getQuantidade());
+            total += preco * qtde;
+        }
+        return totalComprado;
+    }
+
+    public Double getMediaCompra() {
+        return mediaCompra;
     }
 
 

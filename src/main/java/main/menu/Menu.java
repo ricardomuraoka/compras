@@ -4,8 +4,12 @@ package main.menu;
 import main.Sobre;
 import main.compras.MenuCompras;
 import main.login.Login;
+import main.usuarios.Cliente;
 import main.usuarios.Usuario;
 import java.util.Scanner;
+
+import static main.usuarios.Cliente.getHistoricoCompras;
+
 /**
  * Classe utilitária menu
  */
@@ -43,6 +47,7 @@ public final class Menu {
                 System.exit(0);
                 break;
             case 5:
+                System.out.println(getHistoricoCompras());
                 break;
             default:
                 System.out.println("Escolha uma das opções: ");
