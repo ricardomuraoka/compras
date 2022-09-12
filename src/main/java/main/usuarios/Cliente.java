@@ -1,9 +1,9 @@
 package main.usuarios;
 
+import main.compras.CarrinhoDeCompras;
 import main.estoque.Produto;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,7 +13,7 @@ import static main.login.Login.trocaUsuario;
 Classe Cliente
  */
 public class Cliente extends Usuario {
-    private static List<Usuario> clientes = new ArrayList<>();
+    private static List<Cliente> clientes = new ArrayList<>();
 
     private String name;
     private String cidade;
@@ -55,7 +55,7 @@ public class Cliente extends Usuario {
         if (clientes.contains(novo)) {
             System.out.println("Este cliente já existe");
         } else {
-            clientes.add(novo);
+            clientes.add((Cliente) novo);
         }
     }
 
@@ -87,6 +87,25 @@ public class Cliente extends Usuario {
         return historico;
     }
 
+    public Double getTotalComprado() {
+        Double total = Double.valueOf(0);
+        Double preco = 0.00;
+        Double qtde = Double.valueOf(0);
+        for (Produto produto : historicoCompras) {
+            preco = produto.getPreco();
+            qtde = Double.valueOf(produto.getQuantidade());
+            total += preco * qtde;
+        }
+        return total;
+    }
+
+    public Double getMediaCompra() {
+        Double total = getTotalComprado();
+        int numeroCompras = historicoCompras.size();
+        Double media = total / numeroCompras;
+        return media;
+    }
+
     public static void adicionaCompra(List<Produto> compra) {
         historicoCompras.addAll(compra);
     }
@@ -107,25 +126,11 @@ public class Cliente extends Usuario {
         this.cidade = cidade;
     }
 
-    public static List<Usuario> getClientes() {
+    public static List<Cliente> getClientes() {
         return clientes;
     }
 
-    public Double getTotalComprado() {
-        Double total = Double.valueOf(0);
-        Double preco = 0.00;
-        Double qtde = Double.valueOf(0);
-        for (Produto produto : historicoCompras) {
-            preco = produto.getPreco();
-            qtde = Double.valueOf(produto.getQuantidade());
-            total += preco * qtde;
-        }
-        return totalComprado;
-    }
 
-    public Double getMediaCompra() {
-        return mediaCompra;
-    }
 
 
     @Override

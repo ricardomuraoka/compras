@@ -1,9 +1,10 @@
 package main.usuarios;
 
+import main.estoque.Produto;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import static main.usuarios.Cliente.*;
 
 /**
  * Classe usuário
@@ -19,7 +20,6 @@ public abstract class Usuario {
     }
 
 
-
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
@@ -31,7 +31,10 @@ public abstract class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+
 }
+
 
 
 

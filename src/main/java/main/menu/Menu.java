@@ -6,8 +6,12 @@ import main.compras.MenuCompras;
 import main.login.Login;
 import main.usuarios.Cliente;
 import main.usuarios.Usuario;
+
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
+import static main.relatorio.Relatorio.escolhaRelatorio;
+import static main.relatorio.Relatorio.relatorioGeral;
 import static main.usuarios.Cliente.getHistoricoCompras;
 
 /**
@@ -47,7 +51,7 @@ public final class Menu {
                 System.exit(0);
                 break;
             case 5:
-                System.out.println(getHistoricoCompras());
+                escolhaRelatorio();
                 break;
             default:
                 System.out.println("Escolha uma das opções: ");

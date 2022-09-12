@@ -17,7 +17,7 @@ public class MenuCompras {
     public static void MenuCompras(Usuario usuario) throws InterruptedException {
         Usuario logado = usuario;
         Scanner in = new Scanner(System.in);
-        CarrinhoDeCompras carrinho = new CarrinhoDeCompras();
+        CarrinhoDeCompras carrinho = new CarrinhoDeCompras((Cliente) logado);
         System.out.println("ESCOLHA UMA OPÇÃO");
         System.out.println("1 - DIGITE 1 - BUSCAR PRODUTOS. ");
         System.out.println("2 - DIGITE 2 - LISTA PRODUTOS. ");
