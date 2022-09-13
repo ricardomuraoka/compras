@@ -11,8 +11,6 @@ import java.sql.SQLOutput;
 import java.util.Scanner;
 
 import static main.relatorio.Relatorio.escolhaRelatorio;
-import static main.relatorio.Relatorio.relatorioGeral;
-import static main.usuarios.Cliente.getHistoricoCompras;
 
 /**
  * Classe utilitária menu
@@ -26,7 +24,9 @@ public final class Menu {
         Usuario logado = usuario;
         Scanner in = new Scanner(System.in);
         System.out.println("ESCOLHA UMA OPÇÃO");
-        System.out.println("1 - DIGITE 1 - FAZER COMPRAS. ");
+        if (logado.getCpf() != ("admin") && logado.getSenha() != ("admin")) {
+            System.out.println("1 - DIGITE 1 - FAZER COMPRAS. ");
+        }
         System.out.println("2 - DIGITE 2 - TROCAR USUÁRIO. ");
         System.out.println("3 - DIGITE 3 - SOBRE. ");
         System.out.println("4 - DIGITE 4 - SAIR. ");
@@ -34,7 +34,7 @@ public final class Menu {
             System.out.println("5 - DIGITE 5 - RELATÓRIOS SOBRE CLIENTES. ");
         }
         int option = Integer.parseInt(in.nextLine());
-
+        try {
         switch(option) {
             case 1:
                 MenuCompras.MenuCompras(logado);
@@ -55,6 +55,9 @@ public final class Menu {
                 break;
             default:
                 System.out.println("Escolha uma das opções: ");
+        }
+        } catch (NumberFormatException e) {
+            Menu.menu(logado);
         }
     }
 }

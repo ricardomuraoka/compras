@@ -3,23 +3,22 @@ package main.compras;
 
 import main.estoque.Produto;
 import main.usuarios.Cliente;
-import main.usuarios.Usuario;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import static main.estoque.Produto.estoque;
 
 public class CarrinhoDeCompras {
 
-    private static ArrayList<Produto> carrinho = new ArrayList<>();
+    private static ArrayList<Produto> produtosNoCarrinho = new ArrayList<>();
     private static double totalCompras;
+    private static Cliente clienteCarrinho;
 
 
-
-    public CarrinhoDeCompras(Cliente cliente) {
-        }
+    public CarrinhoDeCompras(Cliente atual) {
+        clienteCarrinho = atual;
+    }
 
 
     public static void adicionaProduto() {
@@ -31,8 +30,8 @@ public class CarrinhoDeCompras {
         buscaProduto(itemProduto);
         for (Produto produtoEstoque : estoque) {
             if (produtoEstoque.getNome().equals(itemProduto)) {
-                carrinho.add(produtoEstoque);
-                carrinho.get(carrinho.indexOf(produtoEstoque)).setQuantidade(qtdeProdutos);
+                produtosNoCarrinho.add(produtoEstoque);
+                produtosNoCarrinho.get(produtosNoCarrinho.indexOf(produtoEstoque)).setQuantidade(qtdeProdutos);
             }
         }
     }
@@ -45,7 +44,7 @@ public class CarrinhoDeCompras {
                 System.out.println(resultadoBusca);
             }
         }
-        if (resultadoBusca == "") {
+        if (resultadoBusca.equals("")) {
             resultadoBusca = ("Não temos " + busca + " em estoque");
             System.out.println(resultadoBusca);
         }
@@ -54,25 +53,36 @@ public class CarrinhoDeCompras {
 
     public static Double totalCompras() {
         double total = 0;
-        for (Produto produtoCarrinho: carrinho) {
+        for (Produto produtoCarrinho : produtosNoCarrinho) {
             total += produtoCarrinho.getPreco() * produtoCarrinho.getQuantidade();
         }
         totalCompras = total;
         return total;
     }
 
-    public static void fecharCompra(Cliente cliente) {
-        for (Produto produtoCarrinho: carrinho) {
-            int qtdeProdutoCarrinho = carrinho.get(carrinho.indexOf(produtoCarrinho)).getQuantidade();
+
+    public static void fecharCompra() {
+        for (Produto produtoCarrinho : produtosNoCarrinho) {
+            int qtdeProdutoCarrinho = produtosNoCarrinho.get(produtosNoCarrinho.indexOf(produtoCarrinho)).getQuantidade();
             int qtdeProdutoEstoque = estoque.get(estoque.indexOf(produtoCarrinho)).getQuantidade();
             estoque.get(estoque.indexOf(produtoCarrinho)).setQuantidade(qtdeProdutoEstoque - qtdeProdutoCarrinho);
-            carrinho.get(carrinho.indexOf(produtoCarrinho)).setQuantidade(qtdeProdutoCarrinho);
+            produtosNoCarrinho.get(produtosNoCarrinho.indexOf(produtoCarrinho)).setQuantidade(qtdeProdutoCarrinho);
         }
-        cliente.adicionaCompra(carrinho);
-        carrinho = new ArrayList<>();
+        Cliente.adicionaCompra(produtosNoCarrinho);
+        produtosNoCarrinho = new ArrayList<>();
     }
+
+    public static double getTotalCompras() {
+        return totalCompras;
+    }
+
+
+    public ArrayList<Produto> getCarrinho() {
+        return produtosNoCarrinho;
+    }
+
     public ArrayList<Produto> getCarrinhoProdutos() {
-        return carrinho;
+        return produtosNoCarrinho;
     }
 
     @Override
@@ -80,3 +90,5 @@ public class CarrinhoDeCompras {
         return getCarrinhoProdutos() + "\nValor Total: R$" + totalCompras();
     }
 }
+
+

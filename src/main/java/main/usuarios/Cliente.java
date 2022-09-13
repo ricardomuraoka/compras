@@ -13,12 +13,10 @@ import static main.login.Login.trocaUsuario;
 Classe Cliente
  */
 public class Cliente extends Usuario {
-    private static List<Cliente> clientes = new ArrayList<>();
-
     private String name;
     private String cidade;
-    private Double totalComprado;
-    private Double mediaCompra;
+    private static List<Cliente> clientes = new ArrayList<>();
+    private static List<CarrinhoDeCompras> compras = new ArrayList<>();
     private static List<Produto> historicoCompras = new ArrayList<>();
 
     public Cliente(String name, String cpf, String senha) {
@@ -74,45 +72,11 @@ public class Cliente extends Usuario {
         }
     }
 
-    public static List<Produto> getHistoricoCompras() {
-        Scanner in = new Scanner(System.in);
-        System.out.println("Digite o nome do usuario que deseja obter o historico");
-        String clienteRelatorio = in.nextLine();
-        List<Produto> historico = null;
-        for (Usuario cliente : clientes) {
-            if (cliente.getCpf() == clienteRelatorio) {
-            }
-            historico = geraHistorico();
-        }
-        return historico;
-    }
 
-    public Double getTotalComprado() {
-        Double total = Double.valueOf(0);
-        Double preco = 0.00;
-        Double qtde = Double.valueOf(0);
-        for (Produto produto : historicoCompras) {
-            preco = produto.getPreco();
-            qtde = Double.valueOf(produto.getQuantidade());
-            total += preco * qtde;
-        }
-        return total;
-    }
-
-    public Double getMediaCompra() {
-        Double total = getTotalComprado();
-        int numeroCompras = historicoCompras.size();
-        Double media = total / numeroCompras;
-        return media;
-    }
-
-    public static void adicionaCompra(List<Produto> compra) {
+    public static void adicionaCompra(ArrayList<Produto> compra) {
         historicoCompras.addAll(compra);
     }
 
-    public static List<Produto> geraHistorico() {
-        return historicoCompras;
-    }
 
     public void setName(String name) {
         this.name = name;
@@ -130,13 +94,42 @@ public class Cliente extends Usuario {
         return clientes;
     }
 
+    public static List<Produto> getCompras() {
+        return historicoCompras;
+    }
+
+    public static List<Cliente> criaCliente() {
+        Cliente joao = new Cliente("João", "123456", "123456");
+        Cliente marcio = new Cliente("Márcio", "12", "12");
+        Cliente marina = new Cliente("Marina", "13", "13");
+        Cliente maria = new Cliente("Maria", "14", "14");
+        Cliente mariana = new Cliente("Mariana", "15", "15");
+        Cliente ze = new Cliente("Zé", "16", "17");
+        Cliente lucas = new Cliente("Lucas", "18", "18");
+        Cliente dolores = new Cliente("Dolores", "19", "19");
+        Cliente barbara = new Cliente("Bárbara", "20", "20");
+        Cliente ok = new Cliente("ok", "ok", "ok");
+
+
+
+        clientes.add(joao);
+        clientes.add(marcio);
+        clientes.add(marina);
+        clientes.add(maria);
+        clientes.add(mariana);
+        clientes.add(ze);
+        clientes.add(lucas);
+        clientes.add(dolores);
+        clientes.add(barbara);
+        clientes.add(ok);
+        return clientes;
+    }
 
 
 
     @Override
     public String toString() {
-        return "Nome do cliente: " + name +
-                ", cidade: " + cidade;
+        return "Cliente: " + name + "\n";
     }
 
 
