@@ -4,7 +4,7 @@
 
 ### Esta a primeira atividade realmente avaliativa da disciplina.
 
-# <a href=“https://youtu.be/M0IUPz_dqFU/“>Video do projeto</a>
+# [Vídeo do Projeto](https://youtu.be/M0IUPz_dqFU/)
 
 # Módulos
 ## Login
